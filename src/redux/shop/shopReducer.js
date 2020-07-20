@@ -2,6 +2,9 @@ import { SET_PRODUCTS, SET_PRODUCT } from 'redux/shop/shopType';
 
 const initialState = {
   products: [],
+  product: {},
+  checkout: {},
+  isCartOpen: false,
 };
 
 const shopReducer = (state = initialState, action) => {
