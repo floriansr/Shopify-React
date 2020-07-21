@@ -1,1 +1,1 @@
-export { setProducts, setProduct } from 'redux/shop/shopActions';
+export { setProducts, setProduct, setCheckout } from 'redux/shop/shopActions';
