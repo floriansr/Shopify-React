@@ -1,0 +1,47 @@
+@import './bootstrap-grid.css';
+
+.card {
+  position: relative;
+  border: 2px solid #f1f1f1;
+  border-radius: 0.75rem;
+  background: blueviolet;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  margin-bottom: auto;
+}
+
+.card-image {
+  position: relative;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.card-image img,
+.card-image > .view {
+  max-width: 100%;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.card-caption-overlay {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  padding: 15px 0;
+  background: #FFF;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 0 0 0.25rem 0.25rem;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+
+.card-caption-overlay--2 {
+  height: 60px;
+  width: calc(100% - 1.6rem);
+  margin: 0.8rem;
+  background: #FFF;
+  border-radius: 0.25rem;
+}
