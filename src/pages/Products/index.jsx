@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ShopifyProvider from 'services/ShopifySDK_Manager';
 
-import { Container, Text, Div, Row, Col, Button } from 'atomize';
+import { Container, Text, Div, Row, Button } from 'atomize';
 import { setCheckout, setProducts } from '../../redux';
 
 const Products = () => {
@@ -31,40 +31,52 @@ const Products = () => {
   return (
     <>
       <Container>
-        <Row>
-          <Button type="button" onClick={(e) => set(e)}>
-            Chairs
-          </Button>
-          <Button type="button" onClick={(e) => set(e)}>
-            Sofas
-          </Button>
-          <Button type="button" onClick={(e) => set(e)}>
-            Lamp
-          </Button>
-          <Button type="button" onClick={(e) => set(e)}>
-            Sofas
-          </Button>
-        </Row>
+        <h2>What items are you looking for ?</h2>
+        <Container className="mb-3">
+          <Row>
+            <Button type="button" onClick={(e) => set(e)}>
+              Chairs
+            </Button>
+            <Button type="button" onClick={(e) => set(e)}>
+              Sofas
+            </Button>
+            <Button type="button" onClick={(e) => set(e)}>
+              Lamp
+            </Button>
+            <Button type="button" onClick={(e) => set(e)}>
+              Sofas
+            </Button>
+          </Row>
+        </Container>
 
         <Row>
           {products
             .filter((x) => x.productType === choice)
-            .map((product) => (
-              <Col key={product.id} size="4">
-                <Link to={`/product/${product.id}`}>
-                  <Div p="2rem">
-                    <Div
-                      h="20rem"
-                      bgImg={product.images[0].src}
-                      bgSize="cover"
-                      bgPos="center center"
-                    >
-                      <Text>{product.title}</Text>
-                      <Text>{product.variants[0].price}</Text>
+            .map((p) => (
+              <Div className="card col-lg-6" key={p.id}>
+                <Div className="card-image">
+                  <Link to={`/product/${p.id}`}>
+                    <Div h="20rem" bgImg={p.images[0].src} bgSize="cover" />
+                  </Link>
+                </Div>
+                <Div className="card-caption-overlay card-caption-overlay--2">
+                  <Div className="card-caption">
+                    <Div className="text-center">
+                      <Link
+                        to={`/product/${p.id}`}
+                        className="heading heading-6 strong-500 mb-0"
+                      >
+                        <Text>{p.title}</Text>
+                      </Link>
+
+                      <span className="clearfix" />
+                      <span className="text-sm">
+                        <Text>{p.variants[0].price}</Text>
+                      </span>
                     </Div>
                   </Div>
-                </Link>
-              </Col>
+                </Div>
+              </Div>
             ))}
         </Row>
       </Container>
