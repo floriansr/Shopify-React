@@ -12,10 +12,8 @@ export default class ShopifyProvider {
   }
 
   static async fetchAllProducts() {
-    await client.product.fetchAll().then((x) => {
-      // console.log('ShopifyProvider  -> fetchAllProducts', x);
-      return x;
-    });
+    const res = await client.product.fetchAll();
+    return res;
   }
 
   static async fetchAllProductWithId(id) {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import ShopifyProvider from 'services/ShopifySDK_Manager';
-import { setCheckout } from '../../redux';
+import { setCheckout, setProducts } from '../../redux';
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,12 @@ const Products = () => {
       const res = await ShopifyProvider.createCheckout();
       dispatch(setCheckout(res));
     };
+    const products = async () => {
+      const res = await ShopifyProvider.fetchAllProducts();
+      dispatch(setProducts(res));
+    };
     checkout();
+    products();
   });
 
   return (
