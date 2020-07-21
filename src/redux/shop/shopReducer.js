@@ -1,4 +1,4 @@
-import { SET_PRODUCTS, SET_PRODUCT } from 'redux/shop/shopType';
+import { SET_PRODUCTS, SET_PRODUCT, SET_CHECKOUT } from 'redux/shop/shopType';
 
 const initialState = {
   products: [],
@@ -19,6 +19,12 @@ const shopReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.details,
+      };
+
+    case SET_CHECKOUT:
+      return {
+        ...state,
+        checkout: action.details,
       };
     default:
       return state;
