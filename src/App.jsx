@@ -17,8 +17,8 @@ const App = () => {
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <Router>
           <Switch>
-            <Product exact path="/product" />
-            <Products exact path="/" />
+            <Route exact path="/product/:id" component={Product} />
+            <Route exact path="/" component={Products} />
             <Route path="*" status={404} />
           </Switch>
         </Router>

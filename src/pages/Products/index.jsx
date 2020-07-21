@@ -21,7 +21,7 @@ const Products = () => {
     };
     checkout();
     allProducts();
-  });
+  }, [dispatch]);
 
   return (
     <>
@@ -29,7 +29,7 @@ const Products = () => {
         <Row>
           {products.map((product) => (
             <Col key={product.id} size="3">
-              <Link to="/product/productid">
+              <Link to={`/product/${product.id}`}>
                 <Div p="2rem">
                   <Div
                     h="20rem"
