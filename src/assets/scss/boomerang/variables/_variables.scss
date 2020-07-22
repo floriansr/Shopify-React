@@ -193,3 +193,130 @@ a {
     color: #007bff;
     text-decoration: none;
 }
+
+.checkbox-color input:checked ~ label {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.checkbox-color label {
+    width: 2.25rem;
+    height: 2.25rem;
+    float: left;
+    padding: 0.375rem;
+    margin-right: 0.375rem;
+    display: block;
+    font-size: .875rem;
+    text-align: center;
+    opacity: 0.7;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    transform: scale(0.95);
+}
+
+.checkbox-color input:checked ~ label:after {
+    content: "\f121";
+    font-family: "Ionicons";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+}
+
+label {
+    font-weight: 400;
+    font-size: .8rem;
+    text-transform: none;
+    color: rgba(0,0,0,0.7);
+}
+
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.strong-600 {
+    font-weight: 600 !important;
+}
+
+.list-inline {
+    padding-left: 0;
+    list-style: none;
+}
+
+.checkbox-color input {
+    left: -9999px;
+    position: absolute;
+}
+
+.btn-styled {
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  padding: 0.75rem 2rem;
+}
+
+.btn-styled.btn-lg {
+  font-size: 0.8rem !important;
+  padding: 1rem 2rem !important;
+}
+
+.btn-base-1 {
+  color: #FFF;
+  background-color: #3452ff;
+  border: 1px solid #3452ff;
+}
+
+.btn-base-1:active,
+.btn-base-1.active,
+.btn-base-1:focus,
+.btn-base-1:hover {
+  background-color: #0127ff;
+  color: #FFF;
+}
+
+.shop-cards.shop-tech .product-buttons .btn-cart {
+  font-size: 0.625rem !important;
+  padding: 0.625rem 0.875rem !important;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.form-control, .form-control>.btn {
+    font-size: .875rem;
+    font-weight: 400;
+    color: #555;
+    background-color: #FFF;
+    border-width: 1px;
+    border-color: #e6e6e6;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: background-color 0.2s linear;
+    -ms-transition: background-color 0.2s linear;
+    transition: background-color 0.2s linear;
+}
+
+.form-control-lg, .input-group-lg>.form-control, .input-group-lg>.input-group-addon, .input-group-lg>.input-group-btn>.btn {
+    padding: 0.75rem 1rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: 2px;
+}
+
+.form-control {
+
+    border: 1px solid #ced4da;
+
+}
+.form-control-lg :focus {
+  border: 1px solid red;
+}
