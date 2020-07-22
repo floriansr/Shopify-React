@@ -1,4 +1,10 @@
-import { SET_PRODUCTS, SET_PRODUCT, SET_CHECKOUT } from 'redux/shop/shopType';
+import {
+  SET_PRODUCTS,
+  SET_PRODUCT,
+  SET_CHECKOUT,
+  SET_CART,
+  REMOVE_CART,
+} from 'redux/shop/shopType';
 
 const initialState = {
   products: [],
@@ -25,6 +31,18 @@ const shopReducer = (state = initialState, action) => {
       return {
         ...state,
         checkout: action.details,
+      };
+
+    case SET_CART:
+      return {
+        ...state,
+        isCartOpen: true,
+      };
+
+    case REMOVE_CART:
+      return {
+        ...state,
+        isCartOpen: false,
       };
     default:
       return state;

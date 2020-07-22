@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Products from 'pages/Products';
 import Product from 'pages/Product';
+import Cart from 'components/Cart';
 
 const debug =
   process.env.NODE_ENV === 'production' ? void 0 : new DebugEngine();
@@ -16,6 +17,7 @@ const App = () => {
     <>
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <Router>
+          <Cart />
           <Switch>
             <Route exact path="/product/:id" component={Product} />
             <Route exact path="/" component={Products} />

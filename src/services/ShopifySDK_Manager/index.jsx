@@ -20,4 +20,15 @@ export default class ShopifyProvider {
     const res = await client.product.fetch(id);
     return res;
   }
+
+  static async addItemToCheckout(variantId, quantity, checkout) {
+    const lineItemsToAdd = [
+      {
+        variantId,
+        quantity,
+      },
+    ];
+    const res = await client.checkout.addLineItems(checkout, lineItemsToAdd);
+    return res;
+  }
 }

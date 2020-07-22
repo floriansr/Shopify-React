@@ -4,13 +4,14 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ShopifyProvider from 'services/ShopifySDK_Manager';
 import { Container, Div, Row, Col, Icon, Button } from 'atomize';
+import { message } from 'antd';
 
-import { setProduct } from '../../redux';
+import { setProduct, setCart, setCheckout } from '../../redux';
 
 const Product = () => {
   const [number, setNumber] = useState(1);
   const { id } = useParams();
-  const { product } = useSelector((state) => state.shop);
+  const { checkout, product } = useSelector((state) => state.shop);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -32,6 +33,22 @@ const Product = () => {
 
   const redirection = () => {
     history.push('/');
+  };
+
+  const cart = async () => {
+    const res = await ShopifyProvider.addItemToCheckout(
+      product.variants[0].id,
+      number,
+      checkout.id
+    );
+
+    message.success(`${number} ${product.title} added !`, 3);
+    dispatch(setCheckout(res));
+    dispatch(setCart());
+  };
+
+  const viewCart = () => {
+    dispatch(setCart());
   };
 
   const renderedItems = () => {
@@ -196,24 +213,52 @@ const Product = () => {
                             >
                               <Icon name="Plus" size="20px" color="white" />
                             </Button>
-                            <Button
-                              prefix={
-                                <Icon
-                                  name="Draft"
-                                  size="16px"
-                                  color="white"
-                                  m={{ r: '0.5rem' }}
-                                />
-                              }
-                              bg="info700"
-                              hoverBg="info800"
-                              rounded="circle"
-                              p={{ r: '1.5rem', l: '1rem' }}
-                              shadow="3"
-                              hoverShadow="4"
+                            <Div
+                              d="flex"
+                              flexDir="column"
+                              justify="space-between"
                             >
-                              Add to cart
-                            </Button>
+                              <Button
+                                prefix={
+                                  <Icon
+                                    name="Draft"
+                                    size="16px"
+                                    color="white"
+                                    m={{ r: '0.5rem' }}
+                                  />
+                                }
+                                bg="info700"
+                                hoverBg="info800"
+                                rounded="circle"
+                                p={{ r: '1.5rem', l: '1rem' }}
+                                shadow="3"
+                                hoverShadow="4"
+                                onClick={cart}
+                              >
+                                Add to cart
+                              </Button>
+
+                              <Button
+                                prefix={
+                                  <Icon
+                                    name="Draft"
+                                    size="16px"
+                                    color="white"
+                                    m={{ r: '0.5rem' }}
+                                  />
+                                }
+                                bg="warning700"
+                                hoverBg="warning800"
+                                rounded="circle"
+                                p={{ r: '1.5rem', l: '1rem' }}
+                                m={{ t: '1.5rem' }}
+                                shadow="3"
+                                hoverShadow="4"
+                                onClick={viewCart}
+                              >
+                                See cart
+                              </Button>
+                            </Div>
                           </Div>
                         </Row>
                       </Col>

@@ -9,10 +9,10 @@ import { setCheckout, setProducts } from '../../redux';
 const Products = () => {
   const [choice, setChoice] = useState('Chairs');
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.shop);
+  const { products, checkout } = useSelector((state) => state.shop);
 
   useEffect(() => {
-    const checkout = async () => {
+    const createCheckout = async () => {
       const res = await ShopifyProvider.createCheckout();
       dispatch(setCheckout(res));
     };
@@ -20,9 +20,9 @@ const Products = () => {
       const res = await ShopifyProvider.fetchAllProducts();
       dispatch(setProducts(res));
     };
-    checkout();
+    !checkout.lineItems && createCheckout();
     allProducts();
-  }, [dispatch]);
+  }, [dispatch, checkout.lineItems]);
 
   const set = (e) => {
     setChoice(e.target.textContent);
