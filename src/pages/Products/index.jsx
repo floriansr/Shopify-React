@@ -104,7 +104,7 @@ const Products = () => {
                             <Link to={`/product/${pa.id}`}>
                               <Div
                                 h="10rem"
-                                m="3rem"
+                                m="1.5rem"
                                 bgImg={pa.images[0].src}
                                 bgSize="contain"
                                 bgRepeat="no-repeat"
@@ -120,7 +120,7 @@ const Products = () => {
                             <div className="price-wrapper">
                               <span className="price heading-6 c-gray-light strong-400">
                                 <span className="price-value">
-                                  {pa.variants[0].price} $
+                                  ${pa.variants[0].price}
                                 </span>
                               </span>
                             </div>
