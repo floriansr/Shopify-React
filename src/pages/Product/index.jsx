@@ -3,14 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ShopifyProvider from 'services/ShopifySDK_Manager';
-import { Container, Div, Row, Col, Icon, Button } from 'atomize';
+import { Container, Div, Row, Col, Icon, Button, Notification } from 'atomize';
 
 import { setProduct } from '../../redux';
 
 const Product = () => {
   const [number, setNumber] = useState(1);
+  const [successDark, setSuccessDark] = useState(false);
   const { id } = useParams();
-  const { product } = useSelector((state) => state.shop);
+  const { checkout, product } = useSelector((state) => state.shop);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -34,10 +35,36 @@ const Product = () => {
     history.push('/');
   };
 
+  const cart = async () => {
+    await ShopifyProvider.addItemToCheckout(
+      product.variants[0].id,
+      number,
+      checkout.id
+    );
+    setSuccessDark(true);
+  };
+
   const renderedItems = () => {
     return (
       <>
         <Container>
+          <Notification
+            bg="success700"
+            textColor="white"
+            isOpen={successDark}
+            onClose={() => setSuccessDark(false)}
+            prefix={
+              <Icon
+                name="Success"
+                color="white"
+                size="18px"
+                m={{ r: '0.5rem' }}
+              />
+            }
+          >
+            {number} {product.title} added to the cart
+          </Notification>
+
           <h2>Is it the one ?</h2>
 
           <section className="slice bg-minimalist">
@@ -211,6 +238,7 @@ const Product = () => {
                               p={{ r: '1.5rem', l: '1rem' }}
                               shadow="3"
                               hoverShadow="4"
+                              onClick={cart}
                             >
                               Add to cart
                             </Button>
