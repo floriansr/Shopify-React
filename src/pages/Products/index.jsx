@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ShopifyProvider from 'services/ShopifySDK_Manager';
 
-import { Container, Text, Div, Row, Button } from 'atomize';
+import { Container, Div, Row } from 'atomize';
 import { setCheckout, setProducts } from '../../redux';
 
 const Products = () => {
@@ -36,46 +36,62 @@ const Products = () => {
         <section className="slice bg-minimalist">
           <Container>
             <div className="row align-items-center mb-5">
-              <div className="col-md-6">
+              <div className="col-md-12">
                 <div className="text-center">
                   <h3 className="heading heading-3 strong-500 text-capitalize">
                     Featured products
                   </h3>
                 </div>
               </div>
-
-              <div className="col-md-6">
-                <div className="text-center text-md-right">
-                  <ul className="inline-links">
-                    <li>
-                      <Button
-                        type="button"
-                        onClick={(e) => set(e)}
-                        className="active"
-                      >
-                        Chairs
-                      </Button>
-                    </li>
-                    <li>
-                      <Button type="button" onClick={(e) => set(e)}>
-                        Sofas
-                      </Button>
-                    </li>
-                    <li>
-                      <Button type="button" onClick={(e) => set(e)}>
-                        Decorations
-                      </Button>
-                    </li>
-                    <li>
-                      <Button type="button" onClick={(e) => set(e)}>
-                        Lamp
-                      </Button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </div>
-
+            <Div
+              d="flex"
+              justify="center"
+              className="link-menu link-menu--style-3 mb-5 align-items-center"
+            >
+              <button
+                type="button"
+                onClick={(e) => set(e)}
+                className={choice === 'Chairs' ? 'active' : ''}
+              >
+                Chairs
+              </button>
+              <button
+                type="button"
+                onClick={(e) => set(e)}
+                className={choice === 'Sofas' ? 'active' : ''}
+              >
+                Sofas
+              </button>
+              <button
+                type="button"
+                onClick={(e) => set(e)}
+                className={choice === 'Tables' ? 'active' : ''}
+              >
+                Tables
+              </button>
+              <button
+                type="button"
+                onClick={(e) => set(e)}
+                className={choice === 'Lamps' ? 'active' : ''}
+              >
+                Lamps
+              </button>
+              <button
+                type="button"
+                onClick={(e) => set(e)}
+                className={choice === 'Kit' ? 'active' : ''}
+              >
+                Kit
+              </button>
+              <button
+                type="button"
+                onClick={(e) => set(e)}
+                className={choice === 'Decoration' ? 'active' : ''}
+              >
+                Decoration
+              </button>
+            </Div>
             <div className="row-wrapper">
               <div className="cols-xs-space cols-md-space">
                 <Row>
@@ -85,7 +101,7 @@ const Products = () => {
                       <div className="col-lg-3 col-md-6" key={pa.id}>
                         <div className="block product no-border z-depth-2--hover mb-5">
                           <div className="block-image">
-                            <Link to="/">
+                            <Link to={`/product/${pa.id}`}>
                               <Div
                                 h="10rem"
                                 m="3rem"
@@ -99,7 +115,7 @@ const Products = () => {
 
                           <div className="block-body px-0 text-center">
                             <h3 className="heading heading-6 strong-500 text-capitalize">
-                              <Link to="/">{pa.title}</Link>
+                              <Link to={`/product/${pa.id}`}>{pa.title}</Link>
                             </h3>
                             <div className="price-wrapper">
                               <span className="price heading-6 c-gray-light strong-400">

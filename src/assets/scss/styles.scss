@@ -45,3 +45,31 @@
   background: #FFF;
   border-radius: 0.25rem;
 }
+
+.link-menu>a, .link-menu>button {
+    display: inline-block;
+    font-size: .875rem;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 0.2em 1.3em;
+    margin-right: 0.625rem;
+}
+
+.link-menu--style-3>a.active, .link-menu--style-3>a:hover, .link-menu--style-3>button.active, .link-menu--style-3>button:hover {
+    background: #3452ff;
+    color: #FFF !important;
+}
+
+.link-menu--style-3>a, .link-menu--style-3>button{
+    background: lightgrey;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+button {
+  outline: none !important;
+  border: 0;
+  }
