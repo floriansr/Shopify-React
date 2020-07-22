@@ -6,7 +6,7 @@ import ShopifyProvider from 'services/ShopifySDK_Manager';
 import { Container, Div, Row, Col, Icon, Button } from 'atomize';
 import { message } from 'antd';
 
-import { setProduct, setCart } from '../../redux';
+import { setProduct, setCart, setCheckout } from '../../redux';
 
 const Product = () => {
   const [number, setNumber] = useState(1);
@@ -36,12 +36,15 @@ const Product = () => {
   };
 
   const cart = async () => {
-    await ShopifyProvider.addItemToCheckout(
+    const res = await ShopifyProvider.addItemToCheckout(
       product.variants[0].id,
       number,
       checkout.id
     );
+    console.log('cart -> res', res);
+
     message.success(`${number} ${product.title} added !`, 3);
+    dispatch(setCheckout(res));
     dispatch(setCart());
   };
 
