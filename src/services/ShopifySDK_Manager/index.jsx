@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import Client from 'shopify-buy';
 
 const client = Client.buildClient({
@@ -18,6 +19,17 @@ export default class ShopifyProvider {
 
   static async fetchAllProductWithId(id) {
     const res = await client.product.fetch(id);
+    return res;
+  }
+
+  static async addItemToCheckout(variantId, quantity, checkout) {
+    const lineItemsToAdd = [
+      {
+        variantId,
+        quantity,
+      },
+    ];
+    const res = await client.checkout.addLineItems(checkout, lineItemsToAdd);
     return res;
   }
 }
