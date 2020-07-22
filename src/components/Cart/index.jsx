@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { SideDrawer, Div, Row, Col, Text } from 'atomize';
+import { SideDrawer, Div, Row, Col, Text, Anchor } from 'atomize';
 import { removeCart } from '../../redux';
 
 const Cart = () => {
@@ -38,6 +38,9 @@ const Cart = () => {
                 </Col>
               </Row>
             ))}
+          <Anchor href={checkout.webUrl} target="_blank">
+            Checkout
+          </Anchor>
         </Div>
       </SideDrawer>
     </>
