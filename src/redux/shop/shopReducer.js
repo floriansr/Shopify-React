@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import {
   SET_PRODUCTS,
   SET_PRODUCT,
@@ -9,7 +10,7 @@ import {
 const initialState = {
   products: [],
   product: {},
-  checkout: {},
+  checkout: Cookies.get('checkout') ? JSON.parse(Cookies.get('checkout')) : {},
   isCartOpen: false,
 };
 

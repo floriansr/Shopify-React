@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ShopifyProvider from 'services/ShopifySDK_Manager';
+
 import { Container, Div, Row, Col, Icon, Button } from 'atomize';
 import { message } from 'antd';
 

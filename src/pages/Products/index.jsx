@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ShopifyProvider from 'services/ShopifySDK_Manager';
+import Cookies from 'js-cookie';
 
 import { Container, Div, Row } from 'atomize';
 import { setCheckout, setProducts } from '../../redux';
@@ -15,14 +16,16 @@ const Products = () => {
     const createCheckout = async () => {
       const res = await ShopifyProvider.createCheckout();
       dispatch(setCheckout(res));
+      Cookies.set('checkout', res, { expires: 6 });
     };
     const allProducts = async () => {
       const res = await ShopifyProvider.fetchAllProducts();
       dispatch(setProducts(res));
     };
+
     !checkout.lineItems && createCheckout();
     allProducts();
-  }, [dispatch, checkout.lineItems]);
+  }, [dispatch]);
 
   const set = (e) => {
     setChoice(e.target.textContent);
